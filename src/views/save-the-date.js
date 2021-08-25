@@ -36,36 +36,48 @@ export default function SaveTheDate() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        e.currentTarget.reset();
-        console.log('form submitted', formValue)
-        // fetch("/.netlify/functions/send-email", {
-        //     method: 'POST',
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(formValue)
-        // }).then(response => {
-        //     console.log('response ', response)
-        //     const data = response
-        //     if (data?.status === 200) {
-        //         console.log('email sent')
-        //     }
-        // })
+        const { error: backendError, clientSecret } = await fetch(
+            '/.netlify/functions/create-payment-intent',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    paymentMethodType: 'card',
+                    currency: 'cad',
+                }),
+            }
+            ).then((r) => r.json());
+            
+        if (backendError){
+            console.log(backendError)
+        } else {
+            console.log(clientSecret)
+        }
         if (!stripe || !elements) {
             return
         }
-
-    const cardElement = elements.getElement(CardElement);
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-    });
-
-    if (error) {
-      console.log('[error]', error);
-    } else {
-      console.log('[PaymentMethod]', paymentMethod);
-    }
+        
+        const {error: stripeError, paymentIntent} = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+                type: 'card',
+                card: elements.getElement(CardElement),
+                billing_details: {
+                    email: formValue.email,
+                    name: formValue.username,
+                },
+            }
+            );
+            
+        if (stripeError) {
+            console.log('[error]', stripeError);
+            return
+        } else {
+            console.log('[PaymentIntent]', paymentIntent);
+            e.currentTarget.reset();
+        }
     }
 
     return (
@@ -73,10 +85,10 @@ export default function SaveTheDate() {
             <div className="flex flex-col items-start w-80 my-32 xl:ml-12">
                 <form onChange={(e) => {
                     const form =  e.currentTarget
-                    setFormValue({ username: form.name.value, email: form.email.value, message: form.message.value })
+                    setFormValue({ username: form.username.value, email: form.email.value, message: form.message.value })
                 }} onSubmit={(e) => handleSubmit(e)}>
                     <fieldset className="mb-4">
-                        <Input required type="text" id="name" placeholder="Name:"/>
+                        <Input required type="text" id="username" placeholder="Name:"/>
                     </fieldset>
                     <fieldset className="mb-4">
                         <Input required type="email" id="email" className="h-12 rounded-lg text-xl w-80 border-secondary border-2 py-2 px-2 outline-none" placeholder="Email:"/>
