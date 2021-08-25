@@ -1,6 +1,6 @@
 const Stripe = require('stripe')
-const stripe = Stripe(process.env.STRIPE_API_KEY)
-// const mail = require('@sendgrid/mail')
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
+const mail = require('@sendgrid/mail').setApiKey(process.env.SENDGRID_API_KEY)
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
 
 
@@ -20,24 +20,24 @@ exports.handler = async ({ header, body }) => {
       endpointSecret,
     );
     
-    if (event.type !== 'payment_intent.succeeded') {
-      return;
-    }
-    console.log('event ', event)
-    // const msg = {
-    //   to: email,
-    //   from: senderEmail,
-    //   subject: "Nouridine",
-    //   text: 'Nytia email',
-    //   html: `
-    //       <img src="" style="margin-bottom:5px"/>
-    //       <br/>
-    //       <h2 style="margin-bottom:12px; margin-top: 5px">Hi ${username},<h2>
-    //       <p style="margin-bottom:4px">thank you for choosing nytialabs! We are delighted to have you as a client.<p>
-    //   `,
-    // }
-
-    // await mail.send(msg)
+    if (event.type === 'payment_intent.succeeded') {
+      console.log('event ', event)
+      
+      const msg = {
+          to: ['wilfriednguess@gmail.com', 'pag.yendu@gmail.com'],
+          from: 'ade.nguessan@outlook.fr',
+          subject: "Test envoi email mariage",
+          text: 'Accuse de reception',
+          html: `
+              <img src="" style="margin-bottom:5px"/>
+              <br/>
+              <h2 style="margin-bottom:12px; margin-top: 5px">Bonsoir ${username},<h2>
+              <p style="margin-bottom:4px">Merci d'avoir confirme votre presence a la ceremonie de mariage de Ruth et Pakendam.<p>
+          `,
+        }
+        
+        await mail.send(msg)
+      }
     return {
       headers: HEADER,
       statusCode: 200,

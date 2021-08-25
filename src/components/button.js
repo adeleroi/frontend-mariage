@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export const AnchOrLink =  React.forwardRef((props, ref) => {
     const {href = '', ...rest} = props
     if (href.startsWith('http') || href.startsWith('#')) {
-        return <a {...props} ref={ref} />
+        return (<a {...props} ref={ref}>{props.children}</a>)
     } else {
         return <Link to={href} {...rest} ref={ref} />
     }
