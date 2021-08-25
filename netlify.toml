@@ -1,5 +1,5 @@
 [build]
     functions = "functions/"
-    publish = "dist/"
+    publish = "deployfunc/"
     command = "npm run build"
 
