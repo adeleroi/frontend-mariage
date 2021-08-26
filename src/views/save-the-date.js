@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Button } from "../components/button";
 import { Input } from "../components/input"
-import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import {CardElement, useStripe} from '@stripe/react-stripe-js';
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 
@@ -31,12 +31,13 @@ const CARD_OPTIONS = {
 
 export default function SaveTheDate() {
     const [formValue, setFormValue] = React.useState({username: "", email: "", message: ""})
-    const [payload, setPayload] = React.useState()
+    // const [payload, setPayload] = React.useState()
     const stripe = useStripe();
-    const elements = useElements();
+    // const elements = useElements();
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(formValue)
         window.fetch('/.netlify/functions/payment-intent', {
                 method: 'POST',
                 headers: {
