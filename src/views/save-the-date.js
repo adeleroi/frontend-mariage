@@ -31,14 +31,13 @@ const CARD_OPTIONS = {
 
 export default function SaveTheDate() {
     const [formValue, setFormValue] = React.useState({username: "", email: "", message: ""})
+    const [payload, setPayload] = React.useState()
     const stripe = useStripe();
     const elements = useElements();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        const { error: backendError, clientSecret } = await fetch(
-            '/.netlify/functions/create-payment-intent',
-            {
+        window.fetch('/.netlify/functions/payment-intent', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,37 +46,46 @@ export default function SaveTheDate() {
                     paymentMethodType: 'card',
                     currency: 'cad',
                 }),
-            }
-            ).then((r) => r.json());
-            
-        if (backendError){
-            console.log(backendError)
-        } else {
-            console.log(clientSecret)
-        }
-        if (!stripe || !elements) {
-            return
-        }
+            })
+            .then(x => x.json())
+            .then(x => console.log(x))
+
+            // .then((r) => r.json())
+            // .then(x => {
+            //     console.log(x)
+            //     return x
+            // })
+            // .then(json => setPayload(json))
+        // console.log('payload ', data)
+        // if (backendError){
+        //     console.log(backendError)
+        // } else {
+        //     console.log(clientSecret)
+        // }
+
+        // if (!stripe || !elements) {
+        //     return
+        // }
         
-        const {error: stripeError, paymentIntent} = await stripe.confirmCardPayment(
-            clientSecret,
-            {
-                type: 'card',
-                card: elements.getElement(CardElement),
-                billing_details: {
-                    email: formValue.email,
-                    name: formValue.username,
-                },
-            }
-            );
+        // const {error: stripeError, paymentIntent} = await stripe.confirmCardPayment(
+        //     data.clientSecret,
+        //     {
+        //         type: 'card',
+        //         card: elements.getElement(CardElement),
+        //         billing_details: {
+        //             email: formValue.email,
+        //             name: formValue.username,
+        //         },
+        //     }
+        //     );
             
-        if (stripeError) {
-            console.log('[error]', stripeError);
-            return
-        } else {
-            console.log('[PaymentIntent]', paymentIntent);
-            e.currentTarget.reset();
-        }
+        // if (stripeError) {
+        //     console.log('[error]', stripeError);
+        //     return
+        // } else {
+        //     console.log('[PaymentIntent]', paymentIntent);
+        //     e.currentTarget.reset();
+        // }
     }
 
     return (

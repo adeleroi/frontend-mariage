@@ -2,6 +2,9 @@ const Stripe = require('stripe')
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 const mail = require('@sendgrid/mail').setApiKey(process.env.SENDGRID_API_KEY)
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
+console.log(process.env.STRIPE_SECRET_KEY)
+console.log(process.env.SENDGRID_API_KEY)
+console.log(process.env.STRIPE_WEBHOOK_SECRET)
 
 
 const HEADER = {
@@ -11,18 +14,19 @@ const HEADER = {
   'Access-Control-Allow-Methods': 'GET, POST, OPTION',
 }
 
-exports.handler = async ({ header, body }) => {
+exports.handler = async ({ headers, body }) => {
   let event
+  console.log('body ', headers['stripe-signature'])
   try {
     event = await stripe.webhooks.constructEvent(
       body,
       headers['stripe-signature'],
       endpointSecret,
     );
-    
+    console.log(event, 'there')
     if (event.type === 'payment_intent.succeeded') {
       console.log('event ', event)
-      
+
       const msg = {
           to: ['wilfriednguess@gmail.com', 'pag.yendu@gmail.com'],
           from: 'ade.nguessan@outlook.fr',
@@ -43,7 +47,7 @@ exports.handler = async ({ header, body }) => {
       statusCode: 200,
       body: JSON.stringify({ received: true })
     };
-  } catch (e) {
+  } catch (error) {
     return {
       statusCode: 500,
       headers: HEADER,
