@@ -30,44 +30,48 @@ const CARD_OPTIONS = {
 };
 
 
-const api = async (url, formValue) => {
-    console.log('api there')
+const client = async (url, formValue, { token, bodyOptions } = {}) => {
     let data = await fetch(url, {
         'method': 'post',
         'headers': {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.REACT_APP_STRIPE_SECRET_KEY}`,
+            'Authorization': token && `Bearer ${token}`,
         },
         'body': JSON.stringify({
-            paymentMethodType: 'card',
-            currency: 'cad',
             email: formValue.email,
             username: formValue.username,
             message: formValue.message,
+            ...bodyOptions
         }),
     })
-    console.log(formValue)
     return data.json()
 }
 
+const OPTIONS = {
+    token: process.env.REACT_APP_STRIPE_SECRET_KEY,
+    bodyOptions: {
+        paymentMethodType: 'card',
+        currency: 'cad'
+    }
+}
 
 export default function SaveTheDate() {
     const [formValue, setFormValue] = React.useState({username: "", email: "", message: ""})
+    const [processing, setProcessing] = React.useState(false)
     const stripe = useStripe();
     const elements = useElements();
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let data = await api('http://localhost:4242/create-payment-intent', formValue).then(x => x)
+        setProcessing(true)
+
+        let data = await client('http://localhost:4242/create-payment-intent', formValue, OPTIONS).then(x => x)
 
         if (!stripe || !elements) {
             return
         }
-        let res = elements.getElement(CardElement)
-        console.log(elements.getElement(CardElement), data.clientSecret)
 
-        const {error: stripeError, paymentIntent} = await stripe.confirmCardPayment(data.clientSecret,
+        const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret,
             {
                 payment_method: {
                   card: elements.getElement(CardElement),
@@ -78,13 +82,23 @@ export default function SaveTheDate() {
                 },
               }
         );
+        console.log('paymentintent ', paymentIntent)
             
         if (stripeError) {
             console.log('[error]', stripeError);
             return
         } else {
-            console.log('[PaymentIntent]', paymentIntent);
-
+            const [
+                sendToBride,
+                sendToGuest
+            ] = await Promise.all(
+                [
+                    client('http://localhost:4242/send-email-to-bride', formValue),
+                    client('http://localhost:4242/send-email-to-guest', formValue),
+                ]
+            )
+            setProcessing(false)
+            console.log(e, sendToGuest, sendToBride)
         }
     }
 
@@ -110,7 +124,9 @@ export default function SaveTheDate() {
                         </div>
                     </fieldset>
                     <fieldset className="flex w-full justify-end">
-                        <Button type="submit" size="large" variant="secondary" disabled={!stripe}>Payez pour confirmer</Button>
+                        <Button
+                            className="hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-50"
+                            type="submit" size="large" variant="secondary" disabled={processing}>Payez pour confirmer</Button>
                     </fieldset>
                 </form>
             </div>
