@@ -20,7 +20,7 @@ function App() {
 }
 
 export default function AppWithProviders() {
-  const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY)
+  const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
   return (
     <Router>
       <Elements stripe={stripePromise}>
