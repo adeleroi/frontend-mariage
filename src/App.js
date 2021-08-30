@@ -3,19 +3,23 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import SaveTheDate from './views/save-the-date';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+import { Navbar } from './components/navbar';
+import { Agenda } from './views/agenda';
 
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route path="/" exact>
-            <SaveTheDate />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div className="App">
+      <Navbar />
+      <Switch>
+        <Route path="/save-the-date" exact>
+          <SaveTheDate />
+        </Route>
+        <Route path="/agenda" exact>
+          <Agenda />
+        </Route>
+      </Switch>
+    </div>
   );
 }
 

@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'Matter-Medium';
+    src: url('./font/Matter-Medium.woff2')format('woff2'), url('./font//Matter-Medium.woff');
+}
+a:after {
+    content: '';
+    height: 2px;
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+    transform-origin: left;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    display: block;
+    position: absolute;
+}
+a.active:after, a:hover::after {
+    background-color: black; /*#C6930A*/
+    transform: scaleX(1);
+
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

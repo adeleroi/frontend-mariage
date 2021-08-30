@@ -5,16 +5,20 @@ module.exports = {
     extend: {},
     fontFamily: {
       'sans': ['glacial indifference', 'sans-serif'],
+      'Matter': ['Matter-Medium', 'sans-serif'],
       'Rokkitt': ['Rokkitt'],
       'Poppins': ['Poppins'],
+      'GreatVibes': ['Great Vibes'],
     },
     textColor: {
-      primary: '#6C63FF',
+      primary: 'black',
       secondary: "#C6930A",
       white: '#fff',
       reference: '#CCCCCC',
       wellbeing: '#F7CAC9',
-      red: 'red'
+      red: 'red',
+      gray: 'rgba(107, 114, 128)',
+      black: 'black'
     },
     boxShadow: {
       sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -33,9 +37,13 @@ module.exports = {
       tertiary: "#4B4A80",
       slogan: '#F0EFFE',
       mood: "#FFC289",
+      white: 'white',
+      lightgray: '#d3d3d3',
+      whitesmoke: '#f3f3f3',
     },
     borderColor: theme => ({
-      ...theme('textColor')
+      ...theme('textColor'),
+      lightgray: '#d3d3d3',
     })
   },
   variants: {

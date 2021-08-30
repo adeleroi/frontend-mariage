@@ -30,6 +30,7 @@ export const ButtonInner = ({size, children, variant}) => {
                     'px-11 py-6 space-x-5': size !== 'medium',
                     'px-8 py-4 space-x-3': size === 'medium',
                     'w-80 px-8 py-4 space-x-3': size === 'large',
+                    'w-96 px-8 py-4 space-x-3': size === 'extra',
                     'text-primary': variant === 'secondary',
                     'text-secondar': variant === 'primary',
                     'bg-secondary': variant === 'secondary'
