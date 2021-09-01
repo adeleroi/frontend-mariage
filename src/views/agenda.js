@@ -1,6 +1,8 @@
 import * as React from 'react'
 import clsx from 'clsx'
-
+import { Form } from './save-the-date'
+import Cavaliere from '../image/cavaliere.jpeg'
+import { H1, H2 } from '../components/typography'
 
 export const Agenda = () => {
     const event = [
@@ -28,35 +30,33 @@ export const Agenda = () => {
     ]
     return (
         <>
-        <div className="flex w-full px-12" style={{height:'50vh'}}>
-            <Deroulement event={event}/>
-        </div>
+        <section className="px-5 max-w-8xl block">
+            <H2 className="text-left text-xl mt-32 sm:mb-12 md:mb-12 text-secondary mb-12">Deroulement de la ceremonie</H2>
+            <div className="flex flex-col md:flex-row">
+                <div className="mr-12 w-full md:w-3/5 mb-12">
+                    <div>
+                        <img src={Cavaliere} className="transform rotate-180 rounded-lg"/>
+                    </div>
+                </div>
+                <div>
+                    <Deroulement event={event}/>
+                </div>
+                <div>
+                    {/* <Form/> */}
+                </div>
+            </div>
+        </section>
         </>
     )
 }
 
-
-// Dimitri Pag-yendu
-// Déroulement 
-
-
-// 9h45-10h15 : arrivée et installation des invités 
-
-// 10h30: début de la célébration 
-
-// 12h00: cocktail et photos 
-
-// 14h00: réception 
-
-// 17h00: départ des lieux
-
 export const Deroulement = ({event}) => {
     return (
-        <div>
+        <div className="block px-6">
             <div className="text-left mb-12">
                 <span>Samedi 9 Octobre 2021</span>
             </div>
-            <div className="">
+            <div className="flex flex-col lg:flex-row justify-start items-center">
                 <div className="">
                     {event.map(event => {
                         return <Event event={event} key={event.from}/>
@@ -70,8 +70,8 @@ export const Deroulement = ({event}) => {
 export const Event = ({event} = event) => {
     let {from, to} = event;
     return (
-        <div  className="flex mb-12">
-            <div className="flex justify-start flex-col text-secondary pr-32">
+        <div  className="flex mb-8">
+            <div className="flex justify-start flex-col text-secondary pr-12 leading-1">
                 <p>{from}</p>
                 {to && <small>-</small>}
                 <p>{to ? to: ''}</p>
@@ -79,9 +79,9 @@ export const Event = ({event} = event) => {
             <div className="flex flex-col items-start text-left">
                 <p className=" text-left">{event?.type}</p>
                 <p className="mt-3 ">{event?.description}</p>
-                {/* <div className="mt-3 text-left font-thin">
-                    <span className="text-secondary">Ajouter a votre calendrier</span>
-                </div> */}
+                <small className="text-gray hover:text-primary">
+                3658 chemin royal saint-françois-de-l'île-d'orléans
+                </small>
             </div>
         </div>
     )

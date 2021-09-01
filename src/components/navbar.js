@@ -6,7 +6,6 @@ import {
     MenuButton,
     MenuItems,
     MenuLink,
-    MenuList,
     MenuPopover,
     useMenuButtonContext,
 } from '@reach/menu-button'

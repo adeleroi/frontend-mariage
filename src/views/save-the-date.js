@@ -141,6 +141,9 @@ export default function SaveTheDate() {
                             onChange={handleChange}
                             onSubmit={handleSubmit}
                             processing={processing}
+                            forPaiment
+                            defaultMsg="Payez pour confirmer"
+                            processingMsg="Paiement en cours"
                         >
                             <CardElement options={CARD_OPTIONS}/>
                         </Form>
@@ -222,7 +225,10 @@ export const Form = ({
     onChange,
     onSubmit,
     processing,
-    children
+    children,
+    forPaiment,
+    defaultMsg=null,
+    processingMsg=null
 }) => {
 
     return (
@@ -238,20 +244,22 @@ export const Form = ({
                 <Input className="w-96" type="textarea" id="message" placeholder="Message:" />
             </fieldset>
             <fieldset>
-                <div className='h-12 bg-white rounded-lg text-xl w-96 border-secondary border-2 pb-2 pt-3 px-2 mb-4 outline-none'>
+                <div className={clsx('h-12 bg-white rounded-lg text-xl w-96 border-secondary border-2 pb-2 pt-3 px-2 mb-4 outline-none', {
+                    'hidden': !forPaiment
+                })}>
                     { children }
                 </div>
             </fieldset>
             <fieldset className="flex justify-start">
                 <Button
-                    className={clsx("rounded-md w-96 lg:w-80 focus:outline-none focus:ring-4 focus:ring-yellow-800 focus:ring-opacity-50 disabled:opacity-50",
+                    className={clsx("rounded-md w-96 focus:outline-none focus:ring-4 focus:ring-yellow-800 focus:ring-opacity-50 disabled:opacity-50",
                     {
                         "bg-bg-purple-700": processing
                     })}
                     type="submit" size="large" variant="secondary" disabled={processing}
                     size="extra"
                     >
-                        { !processing ? "Payez pour confirmer" : "Paiment en cours..."}
+                        { !processing ? defaultMsg : processingMsg }
                 </Button>
             </fieldset>
         </form>
