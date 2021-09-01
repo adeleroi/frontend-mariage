@@ -15,29 +15,29 @@ import { Cutdown } from "../components/cutdown";
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 
-const CARD_OPTIONS = {
-    iconStyle: "solid",
-    style: {
-      base: {
-        iconColor: "#C6930A",
-        color: "black",
-        fontWeight: 500,
-        fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-        fontSize: "16px",
-        fontSmoothing: "antialiased",
-        ":-webkit-autofill": {
-          color: "#fce883"
-        },
-        "::placeholder": {
-          color: "#C6930A"
-        }
-      },
-      invalid: {
-        iconColor: "#ffc7ee",
-        color: "#ffc7ee"
-      }
-    }
-};
+// const CARD_OPTIONS = {
+//     iconStyle: "solid",
+//     style: {
+//       base: {
+//         iconColor: "#C6930A",
+//         color: "black",
+//         fontWeight: 500,
+//         fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+//         fontSize: "16px",
+//         fontSmoothing: "antialiased",
+//         ":-webkit-autofill": {
+//           color: "#fce883"
+//         },
+//         "::placeholder": {
+//           color: "#C6930A"
+//         }
+//       },
+//       invalid: {
+//         iconColor: "#ffc7ee",
+//         color: "#ffc7ee"
+//       }
+//     }
+// };
 
 const settings = {
     dots: false,
@@ -183,7 +183,7 @@ export default function SaveTheDate() {
 }
 
 
-const usePayment = async ({ clientInfo }) => {
+export const usePayment = async ({ clientInfo }) => {
     const [processing, setProcessing] = React.useState(false)
     const stripe = useStripe();
     const elements = useElements();

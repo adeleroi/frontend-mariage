@@ -1,8 +1,7 @@
 import * as React from 'react'
-import clsx from 'clsx'
-import { Form, useMap } from './save-the-date'
+import { useMap } from './save-the-date'
 import Cavaliere from '../image/cavaliere.jpeg'
-import { H1, H2 } from '../components/typography'
+import { H2 } from '../components/typography'
 
 export const Agenda = () => {
     const agendaMapRef = useMap()
@@ -75,7 +74,7 @@ export const Deroulement = ({event}) => {
     )
 }
 
-export const Event = ({event} = event) => {
+export const Event = ({event}) => {
     let {from, to} = event;
     return (
         <div  className="flex mb-8">

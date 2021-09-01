@@ -9,7 +9,7 @@ import {
     MenuPopover,
     useMenuButtonContext,
 } from '@reach/menu-button'
-import {AnimatePresence, motion, useAnimation} from 'framer-motion'
+import {AnimatePresence, motion } from 'framer-motion'
 
 const LINKS = [
     {name: 'Deroulement de la journee', to: '/Agenda'},
