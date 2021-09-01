@@ -12,7 +12,7 @@ module.exports = {
     },
     textColor: {
       primary: 'black',
-      secondary: "#C6930A",
+      secondary: "#C6930A",//"rgba(121, 80, 9, 1)",
       white: '#fff',
       reference: '#CCCCCC',
       wellbeing: '#F7CAC9',

@@ -24,10 +24,10 @@ export const Navbar = () => {
          <div className="px-5 sm:px-6 lg:px-12 py-9 lg:py-12">
             <nav className="flex items-center justify-between max-w-8xl">
                 <Link to="/" className="underlined block whitespace-nowrap text-4xl font-medium focus:outline-none transition">
-                    <h1 className="hidden font-GreatVibes lg:flex">
+                    <h1 className="hidden font-thin lg:flex">
                         Ruth &#128420; Dimitri
                     </h1>
-                    <h1 className="text-left font-GreatVibes flex lg:hidden">
+                    <h1 className="text-left font-thin flex lg:hidden">
                         Ruth &#128420; <br/> Dimitri
                     </h1>
                 </Link>

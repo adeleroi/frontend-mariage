@@ -11,6 +11,7 @@ import Pierre from '../image/Pont-de-pierre.png'
 import Japonais from '../image/pont-japonais.jpeg'
 import * as L from 'leaflet'
 import { H1, H2, H4 } from "../components/typography";
+import { Cutdown } from "../components/cutdown";
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 
@@ -128,32 +129,32 @@ export default function SaveTheDate() {
 
     return (
         <div className="px-5 lg:px-0 max-w-8xl block">
+            <div className="flex">
             <div className="lg:mx-24 xl:mx-44 lg:mb-24 flex flex-col sm:items-center lg:items-start justify-start w-full">
                 <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 text-secondary">Confirmez votre presence</H1>
                 <H2 className="text-center sm:text-left mt-5 mb-4">en remplissant le formulaire ci-bas.</H2>
-                <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Une contribution de 30$ est requise pour confirmer votre presence </H4>
+                <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Faite nous savoir si vous avez besoin d'accomodements </H4>
             </div>
-            <div className="w-full flex lg:items-start items-center xl:justify-between lg:flex-row  flex-col">
-                <div className="flex lg:absolute xl:relative lg:left-32 flex-col justify-start lg:w-80 lg:w-96 my-32 xl:ml-12" style={{zIndex: '1000'}}>
+            <Cutdown vertical className="hidden 2xl:flex"/>
+            </div>
+            <div className="w-full flex lg:items-start items-center lg:justify-between lg:flex-row  flex-col">
+                <div className="flexxl:relative my-24 lg:mt-0  lg:left-32 flex-col justify-start lg:w-80 lg:w-96 xl:ml-12" style={{zIndex: '1000'}}>
                     { !processing ? 
-                    <div className="lg:shadow-2xl xl:shadow-none bg-transparent lg:bg-white xl:bg-transparent" style={{borderRadius: '15px', padding:'10px 10px', width:'410px'}}>
+                    <div className="lg:shadow-2xl xl:shadow-none bg-transparent lg:bg-white lg:ml-24 xl:bg-transparent" style={{borderRadius: '15px', padding:'10px 10px', width:'410px'}}>
                         <Form
                             onChange={handleChange}
                             onSubmit={handleSubmit}
                             processing={processing}
-                            forPaiment
                             defaultMsg="Payez pour confirmer"
                             processingMsg="Paiement en cours"
-                        >
-                            <CardElement options={CARD_OPTIONS}/>
-                        </Form>
+                        />
                     </div>
                     :
                     <p>Votre confirmation a bien ete recu</p>}
                 </div>
-                <div className="relative xl:my-32 xl:mr-12 ring-4 lg:mx-24 ring-yellow-600 rounded-md w-full sm:w-2/3 h-4/5 lg:w-full xl:mr-36 xl:w-2/5">
+                <div className="relative my-12 lg:mt-0 xl:mr-12 ring-4 lg:mx-24 ring-yellow-600 rounded-md w-full sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
                     <div className="m-2">
-                        <div id="mapid w-1/2" ref={leafletRef} style={{height: '84vh'}}>
+                        <div id="mapid w-1/2" ref={leafletRef} style={{height: '44vh'}}>
                         </div>
                         <div className="flex flex-col shadow-2xl">
                             <div className="carousel shadow-2xl" style={{
@@ -167,7 +168,7 @@ export default function SaveTheDate() {
                                                 borderBottomLeftRadius: "15px",
                                                 }}
                                                 key={img.toString()}
-                                            ><img src={img} className="rounded-lg h-60 w-64"/></div>    
+                                            ><img src={img} className="rounded-lg h-60 w-64" alt={img.toString()}/></div>    
                                         )
                                     })}
                                 </Slider>
@@ -227,12 +228,13 @@ export const Form = ({
     processing,
     children,
     forPaiment,
+    className,
     defaultMsg=null,
     processingMsg=null
 }) => {
 
     return (
-        <form
+        <form className={className}
             onChange={onChange} onSubmit={onSubmit}>
             <fieldset className="mb-4">
                 <Input className="w-96" required type="text" id="username" placeholder="Nom:"/>
@@ -250,13 +252,13 @@ export const Form = ({
                     { children }
                 </div>
             </fieldset>
-            <fieldset className="flex justify-start">
+            <fieldset>
                 <Button
                     className={clsx("rounded-md w-96 focus:outline-none focus:ring-4 focus:ring-yellow-800 focus:ring-opacity-50 disabled:opacity-50",
                     {
                         "bg-bg-purple-700": processing
                     })}
-                    type="submit" size="large" variant="secondary" disabled={processing}
+                    type="submit" variant="secondary" disabled={processing}
                     size="extra"
                     >
                         { !processing ? defaultMsg : processingMsg }

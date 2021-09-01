@@ -5,6 +5,7 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import { Navbar } from './components/navbar';
 import { Agenda } from './views/agenda';
+import { Home } from './views/home';
 
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
     <div className="App">
       <Navbar />
       <Switch>
+      <Route path="/" exact>
+          <Home />
+        </Route>
         <Route path="/save-the-date" exact>
           <SaveTheDate />
         </Route>
