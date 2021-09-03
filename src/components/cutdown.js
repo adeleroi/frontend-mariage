@@ -9,7 +9,7 @@ export const Cutdown = ( { vertical, className }) => {
       {
         timeLeft > 0 ?(
         <div className={clsx("flex items-end", className,{
-          "flex-col self-center mr-36": vertical
+          "flex-col": vertical
         })}>
           <div className="text-8xl">{days}J{!vertical && "-  "}</div>
           <div className="text-7xl text-gray">{hours}H{!vertical && "-  "}</div>

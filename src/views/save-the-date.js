@@ -12,32 +12,7 @@ import Japonais from '../image/pont-japonais.jpeg'
 import * as L from 'leaflet'
 import { H1, H2, H4 } from "../components/typography";
 import { Cutdown } from "../components/cutdown";
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
-
-// const CARD_OPTIONS = {
-//     iconStyle: "solid",
-//     style: {
-//       base: {
-//         iconColor: "#C6930A",
-//         color: "black",
-//         fontWeight: 500,
-//         fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-//         fontSize: "16px",
-//         fontSmoothing: "antialiased",
-//         ":-webkit-autofill": {
-//           color: "#fce883"
-//         },
-//         "::placeholder": {
-//           color: "#C6930A"
-//         }
-//       },
-//       invalid: {
-//         iconColor: "#ffc7ee",
-//         color: "#ffc7ee"
-//       }
-//     }
-// };
 
 const settings = {
     dots: false,
@@ -77,8 +52,7 @@ const MapImage = () => ([Ombre, Pierre, Chute, Zen, Japonais])
 export default function SaveTheDate() {
     const [formValue, setFormValue] = React.useState({username: "", email: "", message: ""})
     const [processing, setProcessing] = React.useState(false)
-    const stripe = useStripe();
-    const elements = useElements();
+    const [emailState, setEmailState] = React.useState('')
     const leafletRef = useMap();
 
     const handleChange = (e) => {
@@ -89,64 +63,47 @@ export default function SaveTheDate() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true)
-
-        let data = await client('http://localhost:4242/create-payment-intent', formValue, OPTIONS).then(x => x)
-
-        if (!stripe || !elements) {
-            return
-        }
-
-        const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(data.clientSecret,
-            {
-                payment_method: {
-                  card: elements.getElement(CardElement),
-                  billing_details: {
-                    name: formValue.username,
-                    email: formValue.email,
-                  },
-                },
-              }
-        );
-        console.log('paymentintent ', paymentIntent)
-            
-        if (stripeError) {
-            console.log('[error]', stripeError);
-            return
-        } else {
-            const [
-                sendToBride,
-                sendToGuest
-            ] = await Promise.all(
-                [
-                    client('http://localhost:4242/send-email-to-bride', formValue),
-                    client('http://localhost:4242/send-email-to-guest', formValue),
-                ]
-            )
+        const [
+            sendToBride,
+            sendToGuest
+        ] = await Promise.all(
+            [
+                client('http://localhost:4242/send-email-to-bride', formValue),
+                client('http://localhost:4242/send-email-to-guest', formValue),
+            ]
+        )
+        if (sendToBride && sendToGuest) {
             setProcessing(false)
-            console.log(e, sendToGuest, sendToBride)
+            setEmailState('send')
+            const form = document.querySelector('form')
+            form.reset()
+        } else {
+            setEmailState('error')
+            setProcessing(false)
         }
     }
 
     return (
         <div className="px-5 lg:px-0 max-w-8xl block">
             <div className="flex">
-            <div className="lg:mx-24 xl:mx-44 lg:mb-24 flex flex-col sm:items-center lg:items-start justify-start w-full">
-                <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 text-secondary">Confirmez votre presence</H1>
-                <H2 className="text-center sm:text-left mt-5 mb-4">en remplissant le formulaire ci-bas.</H2>
-                <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Faite nous savoir si vous avez besoin d'accomodements </H4>
-            </div>
-            <Cutdown vertical className="hidden 2xl:flex"/>
+                <div className="lg:mx-24 xl:mx-44 lg:mb-24 flex flex-col sm:items-center lg:items-start justify-start w-full">
+                    <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 text-secondary">Confirmez votre presence</H1>
+                    <H2 className="text-center sm:text-left mt-5 mb-4">en remplissant le formulaire ci-bas.</H2>
+                    <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Faite nous savoir si vous avez besoin d'accomodements </H4>
+                </div>
+                <Cutdown vertical className="hidden 2xl:flex self-center mr-36"/>
             </div>
             <div className="w-full flex lg:items-start items-center lg:justify-between lg:flex-row  flex-col">
-                <div className="flexxl:relative my-24 lg:mt-0  lg:left-32 flex-col justify-start lg:w-80 lg:w-96 xl:ml-12" style={{zIndex: '1000'}}>
+                <div className="my-24 lg:mt-0  lg:left-32 flex-col justify-start lg:w-80 lg:w-96 xl:ml-16" style={{zIndex: '1000'}}>
+                    { emailState==="send" ? "votre message a bien été envoyé": null}
                     { !processing ? 
                     <div className="lg:shadow-2xl xl:shadow-none bg-transparent lg:bg-white lg:ml-24 xl:bg-transparent" style={{borderRadius: '15px', padding:'10px 10px', width:'410px'}}>
                         <Form
                             onChange={handleChange}
                             onSubmit={handleSubmit}
                             processing={processing}
-                            defaultMsg="Payez pour confirmer"
-                            processingMsg="Paiement en cours"
+                            defaultMsg="Soumettre"
+                            processingMsg="Soumission en cours..."
                         />
                     </div>
                     :

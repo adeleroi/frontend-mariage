@@ -12,9 +12,9 @@ import {
 import {AnimatePresence, motion } from 'framer-motion'
 
 const LINKS = [
-    {name: 'Deroulement de la journee', to: '/Agenda'},
-    {name: 'Save the date', to: '/save-the-date'},
-    {name: 'Galerie Photo', to: '/galerie'},
+    {name: 'Déroulement de la journée', to: '/Agenda'},
+    {name: 'Confirmer votre présence', to: '/save-the-date'},
+    {name: 'Galérie Photos', to: '/galerie'},
 ]
 
 const MOBILE_LINKS = [{name: 'Home', to: '/'}, ...LINKS]
@@ -24,11 +24,12 @@ export const Navbar = () => {
          <div className="px-5 sm:px-6 lg:px-12 py-9 lg:py-12">
             <nav className="flex items-center justify-between max-w-8xl">
                 <Link to="/" className="underlined block whitespace-nowrap text-4xl font-medium focus:outline-none transition">
-                    <h1 className="hidden font-thin lg:flex">
-                        Ruth &#128420; Dimitri
+                    <h1 className="hidden font-Matter lg:flex">
+                        Ruth <i className="fa fa-heart" style={{fontSize:"36px", color:"#C6930A", margin: "0 6px 2px 6px"}}></i> Dimitri
                     </h1>
-                    <h1 className="text-left font-thin flex lg:hidden">
-                        Ruth &#128420; <br/> Dimitri
+                    <h1 className="text-left font-Matter relative lg:hidden">
+                        <p>Ruth <i className="fa fa-heart absolute" style={{fontSize:"36px", color:"#C6930A", margin: "0 6px 2px 6px"}}></i></p>
+                        <p>Dimitri</p>
                     </h1>
                 </Link>
                 <ul className="hidden lg:flex">
