@@ -12,7 +12,7 @@ export const Home = () => {
 const HeroSection = () => {
   return (
     <section className="w-full px-6 xl:px-24 mt-36">
-      <div className="relative w-full">
+      <div className="relative w-full p-2 rounded-lg ring-4 ring-black">
         <img src={Chalet} alt="hero" width="100%" height="350px" className="rounded-lg"/>
         {/* <div className="w-full" style={{backgroundColor:"black", height: "80vh", width: "80vw"}}></div> */}
         <div className="hidden lg:absolute bottom-24">

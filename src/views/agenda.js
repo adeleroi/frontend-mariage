@@ -44,20 +44,17 @@ export const Agenda = () => {
             </div>
             <div className="flex flex-col 2xl:flex-row 2xl:mt-32 mt-20">
                 <div className="mr-12 w-full 2xl:w-4/5 mb-12 ">
-                    <div  className="" style={{position:"sticky",  top: "0px"}}>
-                        <img src={Cavaliere} className="h-full transform rotate-180" alt="cheval"/>
+                    <div  className="rounded-lg p-2 ring-4 ring-black" style={{position:"sticky",  top: "0px"}}>
+                        <img src={Cavaliere} className="h-full rounded-lg focus-ring transition transform rotate-180" alt="cheval"/>
                     </div>
                 </div>
                 <div>
                     <div className="flex justify-center flex-col  2xl:flex-col 2xl:items-center  w-full">
                         <Deroulement event={event}/>
-                        {/* <Form
-                            defaultMsg="Soumettre"
-                            processingMsg="Soumission en cours"
-                        /> */}
                     </div>
-                    {/* <Deroulement event={event}/> */}
-                    <div id="mapid" className="my-12" ref={agendaMapRef} style={{height: "30vh"}}></div>
+                    <div className="rounded-lg ring-4 ring-or p-2 my-12">
+                        <div id="mapid" className="rounded-lg" ref={agendaMapRef} style={{height: "30vh"}}></div>
+                    </div>
                     <div>
                     </div>
                 </div>

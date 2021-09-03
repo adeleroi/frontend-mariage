@@ -86,7 +86,7 @@ export default function SaveTheDate() {
         <div className="px-5 lg:px-0 max-w-8xl block">
             <div className="flex">
                 <div className="lg:mx-24 xl:mx-44 lg:mb-24 flex flex-col sm:items-center lg:items-start justify-start w-full">
-                    <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 lg:mb-3 text-secondary">Confirmez votre presence</H1>
+                    <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 lg:mb-3 text-secondary">Confirmez votre présence</H1>
                     <H1 className="text-center sm:text-left mt-5 mb-4">Remplissez le formulaire ci-bas.</H1>
                     <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Faite nous savoir si vous avez besoin d'accomodements </H4>
                 </div>
@@ -96,7 +96,7 @@ export default function SaveTheDate() {
                 <div className="my-24 lg:mt-0  lg:left-32 flex-col justify-start lg:w-80 lg:w-96 xl:ml-16" style={{zIndex: '1000'}}>
                     { emailState==="send" ? "votre message a bien été envoyé": null}
                     { !processing ? 
-                    <div className="lg:shadow-2xl xl:shadow-none bg-transparent lg:bg-white lg:ml-24 xl:bg-transparent" style={{borderRadius: '15px', padding:'10px 10px', width:'410px'}}>
+                    <div className="shadow-2xl  bg-white lg:ml-24" style={{borderRadius: '15px', padding:'10px 10px', width:'410px'}}>
                         <Form
                             onChange={handleChange}
                             onSubmit={handleSubmit}
@@ -106,13 +106,13 @@ export default function SaveTheDate() {
                         />
                     </div>
                     :
-                    <p>Votre confirmation a bien ete recu</p>}
+                    <p>Votre confirmation à bien été recu</p>}
                 </div>
-                <div className="relative my-12 lg:mt-0 xl:mr-12 ring-4 lg:mx-24 ring-yellow-600 rounded-md w-full sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
+                <div className="relative my-12 lg:mt-0 xl:mr-12 ring-4 lg:mx-24 ring-or rounded-md w-96 sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
                     <div className="m-2">
                         <div id="mapid w-1/2" ref={leafletRef} style={{height: '44vh'}}>
                         </div>
-                        <div className="flex flex-col shadow-2xl">
+                        <div className="flex flex-col shadow-2xl hidden md:flex">
                             <div className="carousel shadow-2xl" style={{
                                 position: "absolute", height: '230px', width: "250px", bottom: '70px',
                                 zIndex:'100000', borderRadius:'15px', right:"5%"}}>

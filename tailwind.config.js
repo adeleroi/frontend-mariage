@@ -45,7 +45,11 @@ module.exports = {
     borderColor: theme => ({
       ...theme('textColor'),
       lightgray: '#d3d3d3',
-    })
+    }),
+    ringColor: {
+      or: '#C6930A',
+      black: "#000"
+    }
   },
   variants: {
     extend: {},
