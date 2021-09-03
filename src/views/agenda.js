@@ -35,9 +35,9 @@ export const Agenda = () => {
         <section className="px-5 lg:mx-24 max-w-8xl block">
             <div className="flex">
                 <div className="w-full">
-                    <H1 className="text-center lg:text-left text-xl mt-32 sm:mb-12 md:mb-12 text-secondary mb-12">Déroulement de la cérémonie</H1>
-                    <H1 className="w-full text-center lg:text-left mb-3 lg:w-7/12">le samedi 9 octobre</H1>
-                    <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">au 3658 chemin royal saint-françois-de-l'île-d'orléans</H4>
+                    <H1 className="text-center lg:text-left text-xl mt-32 sm:mb-12 md:mb-12 text-secondary lg:mb-6">Déroulement de la cérémonie</H1>
+                    <H1 className="w-full text-center lg:text-left mb-3 lg:w-7/12">Le samedi 9 octobre</H1>
+                    <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Au 3658 chemin royal saint-françois-de-l'île-d'orléans</H4>
 
                 </div>
                 <Cutdown vertical className="hidden 2xl:flex mr-0 self-end"/>

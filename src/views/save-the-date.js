@@ -10,14 +10,13 @@ import Zen from '../image/jardin-zen.png'
 import Pierre from '../image/Pont-de-pierre.png'
 import Japonais from '../image/pont-japonais.jpeg'
 import * as L from 'leaflet'
-import { H1, H2, H4 } from "../components/typography";
+import { H1, H4 } from "../components/typography";
 import { Cutdown } from "../components/cutdown";
 
 
 const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1
   };
@@ -87,8 +86,8 @@ export default function SaveTheDate() {
         <div className="px-5 lg:px-0 max-w-8xl block">
             <div className="flex">
                 <div className="lg:mx-24 xl:mx-44 lg:mb-24 flex flex-col sm:items-center lg:items-start justify-start w-full">
-                    <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 text-secondary">Confirmez votre presence</H1>
-                    <H2 className="text-center sm:text-left mt-5 mb-4">en remplissant le formulaire ci-bas.</H2>
+                    <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 lg:mb-3 text-secondary">Confirmez votre presence</H1>
+                    <H1 className="text-center sm:text-left mt-5 mb-4">Remplissez le formulaire ci-bas.</H1>
                     <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Faite nous savoir si vous avez besoin d'accomodements </H4>
                 </div>
                 <Cutdown vertical className="hidden 2xl:flex self-center mr-36"/>

@@ -38,6 +38,7 @@ module.exports = {
       slogan: '#F0EFFE',
       mood: "#FFC289",
       white: 'white',
+      black: 'black',
       lightgray: '#d3d3d3',
       whitesmoke: '#f3f3f3',
     },
