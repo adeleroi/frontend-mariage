@@ -24,6 +24,33 @@ export const Cutdown = ( { vertical, className }) => {
   )
 }
 
+export const HorizontalCutdown = ( { vertical, className }) => {
+  const { timeLeft, days, hours, minutes, seconds } = useTime()
+  return (
+    <>
+      {
+        timeLeft > 0 ?(
+        <div className={clsx("flex items-end", className,{
+          "flex-col": vertical
+        })}>
+          <div className="text-8xl">{days}J</div>&nbsp;&nbsp;
+          <div className={clsx("text-7xl text-gray", {
+            "text-7xl": !vertical
+            })}>{hours}H{!vertical && "  "}</div>&nbsp;&nbsp;
+          <div className={clsx("text-6xl text-gray", {
+            "text-7xl": !vertical
+            })}>{minutes}M{!vertical && "  "}</div>&nbsp;&nbsp;
+          <div className={clsx("text-5xl text-gray", {
+            "text-7xl": !vertical
+            })}>{seconds}S</div>
+        </div>
+        ) : (
+          null
+        )
+      }
+    </>
+  )
+}
 
 export const useTime = () => {
   var countDownDate = new Date("Oct 9, 2021 09:45:00").getTime();

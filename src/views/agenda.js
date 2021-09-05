@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useMap } from './save-the-date'
 import Cavaliere from '../image/cavaliere.jpeg'
 import { H1, H4 } from '../components/typography'
-import { Cutdown } from '../components/cutdown'
+import { Cutdown, HorizontalCutdown } from '../components/cutdown'
 
 
 export const Agenda = () => {
@@ -51,6 +51,10 @@ export const Agenda = () => {
                 <div>
                     <div className="flex justify-center flex-col  2xl:flex-col 2xl:items-center  w-full">
                         <Deroulement event={event}/>
+                    </div>
+                    <div className="flex justify-center rounded-lg mt-12 mb-20 p-2 2xl:hidden" style={{backgroundColor: 'whitesmoke'}}>
+                        <Cutdown vertical className="sm:hidden mr-0 w-44 self-center p-2 my-24"/>
+                        <HorizontalCutdown className="flex items-end justify-center hidden sm:flex mr-0 2xl:hidden self-center w-full p-2 my-24"/>
                     </div>
                     <div className="rounded-lg ring-4 ring-or p-2 my-12">
                         <div id="mapid" className="rounded-lg" ref={agendaMapRef} style={{height: "30vh"}}></div>

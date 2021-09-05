@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Button } from "../components/button";
 import { Input } from "../components/input"
-import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+// import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import clsx from "clsx";
 import Slider from "react-slick";
 import Chute from '../image/chute-deau.jpeg'
@@ -11,7 +11,8 @@ import Pierre from '../image/Pont-de-pierre.png'
 import Japonais from '../image/pont-japonais.jpeg'
 import * as L from 'leaflet'
 import { H1, H4 } from "../components/typography";
-import { Cutdown } from "../components/cutdown";
+import { Cutdown, HorizontalCutdown } from "../components/cutdown";
+
 
 
 const settings = {
@@ -38,13 +39,13 @@ const client = async (url, formValue, { token, bodyOptions } = {}) => {
     return data.json()
 }
 
-const OPTIONS = {
-    token: process.env.REACT_APP_STRIPE_SECRET_KEY,
-    bodyOptions: {
-        paymentMethodType: 'card',
-        currency: 'cad'
-    }
-}
+// const OPTIONS = {
+//     token: process.env.REACT_APP_STRIPE_SECRET_KEY,
+//     bodyOptions: {
+//         paymentMethodType: 'card',
+//         currency: 'cad'
+//     }
+// }
 
 const MapImage = () => ([Ombre, Pierre, Chute, Zen, Japonais])
 
@@ -62,9 +63,10 @@ export default function SaveTheDate() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true)
+        console.log('processing...')
         const [
-            sendToBride,
-            sendToGuest
+            {sendToBride},
+            {sendToGuest}
         ] = await Promise.all(
             [
                 client('http://localhost:4242/send-email-to-bride', formValue),
@@ -77,13 +79,13 @@ export default function SaveTheDate() {
             const form = document.querySelector('form')
             form.reset()
         } else {
-            setEmailState('error')
             setProcessing(false)
+            setEmailState('error')
         }
     }
 
     return (
-        <div className="px-5 lg:px-0 max-w-8xl block">
+        <div className="px-5 lg:px-0 flex flex-col max-w-8xl block">
             <div className="flex">
                 <div className="lg:mx-24 xl:mx-44 lg:mb-24 flex flex-col sm:items-center lg:items-start justify-start w-full">
                     <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 lg:mb-3 text-secondary">Confirmez votre présence</H1>
@@ -92,21 +94,21 @@ export default function SaveTheDate() {
                 </div>
                 <Cutdown vertical className="hidden 2xl:flex self-center mr-36"/>
             </div>
-            <div className="w-full flex lg:items-start items-center lg:justify-between lg:flex-row  flex-col">
+            <div className="w-full lg:mt-24 flex lg:items-start items-center lg:justify-between lg:flex-row  flex-col">
                 <div className="my-24 lg:mt-0  lg:left-32 flex-col justify-start lg:w-80 lg:w-96 xl:ml-16" style={{zIndex: '1000'}}>
-                    { emailState==="send" ? "votre message a bien été envoyé": null}
-                    { !processing ? 
-                    <div className="shadow-2xl  bg-white lg:ml-24" style={{borderRadius: '15px', padding:'10px 10px', width:'410px'}}>
+                    <div className="lg:ml-24" style={{borderRadius: '15px', padding:'10px 10px', width:'410px'}}>
                         <Form
                             onChange={handleChange}
                             onSubmit={handleSubmit}
                             processing={processing}
                             defaultMsg="Soumettre"
                             processingMsg="Soumission en cours..."
+                            emailState={emailState}
                         />
                     </div>
-                    :
-                    <p>Votre confirmation à bien été recu</p>}
+                </div>
+                <div className="flex justify-center rounded-lg mt-12 mb-20 py-12 2xl:hidden w-96 sm:w-2/3 mx-12 sm:mx-0 lg:hidden" style={{backgroundColor: 'whitesmoke'}}>
+                    <Cutdown vertical className="lg:hidden mr-0 w-44 self-center p-2"/>
                 </div>
                 <div className="relative my-12 lg:mt-0 xl:mr-12 ring-4 lg:mx-24 ring-or rounded-md w-96 sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
                     <div className="m-2">
@@ -131,52 +133,54 @@ export default function SaveTheDate() {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+            <div className="hidden lg:flex justify-center rounded-lg mt-12 mb-20 py-12 lg:py-0 w-96 sm:w-2/3 mx-12 lg:w-4/5 self-center lg:mx-0 sm:mx-0" style={{backgroundColor: 'whitesmoke'}}>
+                    <HorizontalCutdown className="flex items-end justify-center hidden lg:flex mr-0 2xl:hidden self-center w-full p-2 my-24"/>
+                </div>
         </div>
     )
 }
 
 
-export const usePayment = async ({ clientInfo }) => {
-    const [processing, setProcessing] = React.useState(false)
-    const stripe = useStripe();
-    const elements = useElements();
+// export const usePayment = async ({ clientInfo }) => {
+//     const [processing, setProcessing] = React.useState(false)
+//     const stripe = useStripe();
+//     const elements = useElements();
 
-    if (!stripe || !elements) return
-    let data = await client('http://localhost:4242/create-payment-intent', clientInfo, OPTIONS).then(x => x)
-    if (data) setProcessing(true)
+//     if (!stripe || !elements) return
+//     let data = await client('http://localhost:4242/create-payment-intent', clientInfo, OPTIONS).then(x => x)
+//     if (data) setProcessing(true)
 
-    const { error: stripeError } = await stripe.confirmCardPayment(data.clientSecret,
-        {
-            payment_method: {
-              card: elements.getElement(CardElement),
-              billing_details: {
-                name: clientInfo.username,
-                email: clientInfo.email,
-              },
-            },
-          }
-    );
+//     const { error: stripeError } = await stripe.confirmCardPayment(data.clientSecret,
+//         {
+//             payment_method: {
+//               card: elements.getElement(CardElement),
+//               billing_details: {
+//                 name: clientInfo.username,
+//                 email: clientInfo.email,
+//               },
+//             },
+//           }
+//     );
 
-    if (stripeError) {
-        return stripeError
-    } else {
-        const [
-            sendToBride,
-            sendToGuest
-        ] = await Promise.all(
-            [
-                client('http://localhost:4242/send-email-to-bride', clientInfo),
-                client('http://localhost:4242/send-email-to-guest', clientInfo),
-            ]
-        )
-        setProcessing(false)
-        console.log( sendToGuest, sendToBride)
-        return { processing, sendToGuest, sendToBride }
-    }
-}
+//     if (stripeError) {
+//         return stripeError
+//     } else {
+//         const [
+//             sendToBride,
+//             sendToGuest
+//         ] = await Promise.all(
+//             [
+//                 client('http://localhost:4242/send-email-to-bride', clientInfo),
+//                 client('http://localhost:4242/send-email-to-guest', clientInfo),
+//             ]
+//         )
+//         setProcessing(false)
+//         console.log( sendToGuest, sendToBride)
+//         return { processing, sendToGuest, sendToBride }
+//     }
+// }
 
 export const Form = ({
     onChange,
@@ -186,12 +190,28 @@ export const Form = ({
     forPaiment,
     className,
     defaultMsg=null,
-    processingMsg=null
+    processingMsg=null,
+    emailState,
 }) => {
 
     return (
         <form className={className}
             onChange={onChange} onSubmit={onSubmit}>
+            <fieldset>
+                {
+                   emailState === 'error' ? (
+                    <div className="mb-2 lg:text-left flex items-center">
+                        <i className="fa fa-times-circle absolute text-2xl text-red"></i>
+                        <span className="ml-7 text-red">Une erreur est survenue veuillez reéssayez.</span>
+                    </div>
+                    ): emailState === 'send' ?  (
+                        <div className="mb-2 lg:text-left flex items-center">
+                            <i className="fa fa-check-circle absolute text-2xl text-green"></i>
+                            <span className="ml-7">Votre confirmation à bien été envoyée.</span>
+                        </div>
+                    ): null
+                }
+            </fieldset>
             <fieldset className="mb-4">
                 <Input className="w-96" required type="text" id="username" placeholder="Nom:"/>
             </fieldset>
@@ -245,45 +265,3 @@ export const useMap = () => {
 
     return leafletRef
 }
-
-// export const Form = ({
-//     onChange,
-//     onSubmit,
-//     children
-// }) => {
-//     return (
-//         <form
-//         onChange={(e) => {
-//         const form =  e.currentTarget
-//         setFormValue({ username: form.username.value, email: form.email.value, message: form.message.value })
-//     }} onSubmit={(e) => handleSubmit(e)}>
-//         <fieldset className="mb-4">
-//             <Input className="w-96" required type="text" id="username" placeholder="Nom:"/>
-//         </fieldset>
-//         <fieldset className="mb-4">
-//             <Input className="w-96" required type="email" id="email" placeholder="Email:"/>
-//         </fieldset>
-//         <fieldset className="mb-4">
-//             <Input className="w-96" type="textarea" id="message" placeholder="Message:" />
-//         </fieldset>
-//         {/* <fieldset>
-//             <div className='h-12 bg-white rounded-lg text-xl w-96 border-secondary border-2 pb-2 pt-3 px-2 mb-4 outline-none'>
-//                 <CardElement options={CARD_OPTIONS}/>
-//             </div>
-//         </fieldset> */}
-//         { children }
-//         <fieldset className="flex justify-start">
-//             <Button
-//                 className={clsx("rounded-md w-96 lg:w-80 focus:outline-none focus:ring-4 focus:ring-yellow-800 focus:ring-opacity-50 disabled:opacity-50",
-//                 {
-//                     "bg-bg-purple-700": processing
-//                 })}
-//                 type="submit" size="large" variant="secondary" disabled={processing}
-//                 size="extra"
-//                 >
-//                     { !processing ? "Payez pour confirmer" : "Paiment en cours..."}
-//             </Button>
-//         </fieldset>
-//     </form>
-//     )
-// }

@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import AppWithProviders from './App';
 import reportWebVitals from './reportWebVitals';
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
+// import {Elements} from '@stripe/react-stripe-js';
+// // import {loadStripe} from '@stripe/stripe-js';
 
 // document.addEventListener('DOMContentLoaded', async () => {
 //   const {publishableKey} = await fetch('/config').then((r) => r.json());
-  const stripePromise = loadStripe("pk_test_dBcdfrU9L796gmsYfemRUozd00g7LiJ4CS");
+  // const stripePromise = loadStripe("pk_test_dBcdfrU9L796gmsYfemRUozd00g7LiJ4CS");
 
   ReactDOM.render(
     <React.StrictMode>
-      <Elements stripe={stripePromise}>
+      {/* <Elements stripe={stripePromise}> */}
         <AppWithProviders />
-      </Elements>
+      {/* </Elements> */}
     </React.StrictMode>,
     document.getElementById('root')
   );

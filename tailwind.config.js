@@ -18,7 +18,8 @@ module.exports = {
       wellbeing: '#F7CAC9',
       red: 'red',
       gray: 'rgba(107, 114, 128)',
-      black: 'black'
+      black: 'black',
+      green: 'green',
     },
     boxShadow: {
       sm: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
@@ -41,6 +42,7 @@ module.exports = {
       black: 'black',
       lightgray: '#d3d3d3',
       whitesmoke: '#f3f3f3',
+      red:'red'
     },
     borderColor: theme => ({
       ...theme('textColor'),
