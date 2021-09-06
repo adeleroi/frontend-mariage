@@ -9,6 +9,7 @@ import {
     MenuPopover,
     useMenuButtonContext,
 } from '@reach/menu-button'
+import "@reach/menu-button/styles.css"
 import {AnimatePresence, motion } from 'framer-motion'
 
 const LINKS = [

@@ -13,7 +13,7 @@ export const Galerie = () => {
             <H1 className="mt-32">Bientôt Disponible...</H1>
             <div className="flex justify-evenly flex-wrap my-32">
                 {
-                    MapImage.map((source) => <Tilt src={source} move ></Tilt>)
+                    MapImage.map((source) => <Tilt src={source} move key={source.toString()}></Tilt>)
                 }
             </div>
         </>

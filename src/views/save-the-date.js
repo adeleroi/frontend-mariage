@@ -21,6 +21,7 @@ const client = async (url, formValue, { token, bodyOptions } = {}) => {
         'headers': {
             'Content-Type': 'application/json',
             'Authorization': token && `Bearer ${token}`,
+            "Access-Control-Allow-Origin": '*',
         },
         'body': JSON.stringify({
             email: formValue.email,
@@ -53,8 +54,8 @@ export default function SaveTheDate() {
             {sendToGuest}
         ] = await Promise.all(
             [
-                client('http://localhost:4242/send-email-to-bride', formValue),
-                client('http://localhost:4242/send-email-to-guest', formValue),
+                client('https://morning-caverns-74483.herokuapp.com/send-email-to-bride', formValue),
+                client('https://morning-caverns-74483.herokuapp.com/send-email-to-guest', formValue),
             ]
         )
         if (sendToBride && sendToGuest) {
