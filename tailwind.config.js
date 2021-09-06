@@ -9,6 +9,9 @@ module.exports = {
       'Rokkitt': ['Rokkitt'],
       'Poppins': ['Poppins'],
       'GreatVibes': ['Great Vibes'],
+      'Sacramento': ['Sacramento', 'cursive'],
+      'Tangerine': ['Tangerine', 'cursive'],
+      'Dancing': ['Dancing Script', 'cursive'],
     },
     textColor: {
       primary: 'black',

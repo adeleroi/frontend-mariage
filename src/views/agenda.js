@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useMap } from './save-the-date'
-import Cavaliere from '../image/cavaliere.jpeg'
+import Neige from '../image/neige.jpeg'
 import { H1, H4 } from '../components/typography'
 import { Cutdown, HorizontalCutdown } from '../components/cutdown'
 
@@ -37,7 +37,7 @@ export const Agenda = () => {
                 <div className="w-full">
                     <H1 className="text-center lg:text-left text-xl mt-32 sm:mb-12 md:mb-12 text-secondary lg:mb-6">Déroulement de la cérémonie</H1>
                     <H1 className="w-full text-center lg:text-left mb-3 lg:w-7/12">Le samedi 9 octobre</H1>
-                    <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Au 3658 chemin royal saint-françois-de-l'île-d'orléans</H4>
+                    <H4 className="text-gray w-full text-center lg:text-left">Au 3658 chemin royal saint-françois-de-l'île-d'orléans</H4>
 
                 </div>
                 <Cutdown vertical className="hidden 2xl:flex mr-0 self-end"/>
@@ -45,7 +45,7 @@ export const Agenda = () => {
             <div className="flex flex-col 2xl:flex-row 2xl:mt-32 mt-20">
                 <div className="mr-12 w-full 2xl:w-4/5 mb-12 ">
                     <div  className="rounded-lg p-2 ring-4 ring-black" style={{position:"sticky",  top: "0px"}}>
-                        <img src={Cavaliere} className="h-full rounded-lg focus-ring transition transform rotate-180" alt="cheval"/>
+                        <img src={Neige} className="h-full rounded-lg focus-ring" alt="cheval"/>
                     </div>
                 </div>
                 <div>

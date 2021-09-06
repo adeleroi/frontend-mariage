@@ -3,24 +3,24 @@ import { Button } from "../components/button";
 import { Input } from "../components/input"
 // import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import clsx from "clsx";
-import Slider from "react-slick";
-import Chute from '../image/chute-deau.jpeg'
-import Ombre from '../image/jardin-dombre.jpeg'
-import Zen from '../image/jardin-zen.png'
-import Pierre from '../image/Pont-de-pierre.png'
-import Japonais from '../image/pont-japonais.jpeg'
+// import Slider from "react-slick";
+// import Chute from '../image/chute-deau.jpeg'
+// import Ombre from '../image/jardin-dombre.jpeg'
+// import Zen from '../image/jardin-zen.png'
+// import Pierre from '../image/Pont-de-pierre.png'
+// import Japonais from '../image/pont-japonais.jpeg'
 import * as L from 'leaflet'
-import { H1, H4 } from "../components/typography";
+import { H1, H4, Paragraph } from "../components/typography";
 import { Cutdown, HorizontalCutdown } from "../components/cutdown";
+import Perspective from "../image/perspective.jpeg"
 
 
-
-const settings = {
-    dots: false,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
+// const settings = {
+//     dots: false,
+//     infinite: true,
+//     slidesToShow: 1,
+//     slidesToScroll: 1
+// };
 
 const client = async (url, formValue, { token, bodyOptions } = {}) => {
     let data = await fetch(url, {
@@ -47,13 +47,13 @@ const client = async (url, formValue, { token, bodyOptions } = {}) => {
 //     }
 // }
 
-const MapImage = () => ([Ombre, Pierre, Chute, Zen, Japonais])
+// const MapImage = () => ([Ombre, Pierre, Chute, Zen, Japonais])
 
 export default function SaveTheDate() {
     const [formValue, setFormValue] = React.useState({username: "", email: "", message: ""})
     const [processing, setProcessing] = React.useState(false)
     const [emailState, setEmailState] = React.useState('')
-    const leafletRef = useMap();
+    // const leafletRef = useMap();
 
     const handleChange = (e) => {
         const form =  e.currentTarget
@@ -90,10 +90,28 @@ export default function SaveTheDate() {
                 <div className="lg:mx-24 xl:mx-44 lg:mb-24 flex flex-col sm:items-center lg:items-start justify-start w-full">
                     <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 lg:mb-3 text-secondary">Confirmez votre présence</H1>
                     <H1 className="text-center sm:text-left mt-5 mb-4">Remplissez le formulaire ci-bas.</H1>
-                    <H4 className="text-gray w-full text-center lg:text-left lg:w-4/12">Faite nous savoir si vous avez besoin d'accomodements </H4>
+                    <H4 className="text-gray w-full text-center lg:text-left ">Faite nous savoir si vous avez besoin d'accomodements (allergies)</H4>
                 </div>
                 <Cutdown vertical className="hidden 2xl:flex self-center mr-36"/>
             </div>
+            {/* <div className="flex justify-center ml-44 mr-36">
+                <div className="w-1/3 text-center leading-loose font-Dancing rounded-lg ml-3 p-5 text-xl flex self-center">
+                    <Paragraph className="text-4xl leading-loose">
+                        Nous sommes heureux de vous inviter le 9 octobre 2021 à notre mariage… <br/>
+
+                        Les cérémonies  religieuse et civile ainsi que la réception, se dérouleront dans les jardins de la Seigneurie de l’île dorleans.<br/>
+
+                        Vous pourrez profiter du cadre exceptionnellement beau de cet environnement naturel pour prendre des photos ou renouer avec Mère Nature, autour d'un cocktail et d'un repas que nous vous offrons.
+
+                        Mettez-vous sur votre 31, arborez un coeur rempli de joie : nous allons célébrer l’amour !!<br/>
+
+                    </Paragraph>
+                </div>
+                <div className="self-start flex flex-col items-end hidden">
+                    <img alt="" className="ml-24 w-full 2xl:w-4/5" src={Perspective} />
+                </div>
+            </div>
+            <Paragraph className='ml-44 mr-36text-left text-red'>NB: Les frais d'accès au site de la Seigneurie de l'île d Orléans sont de 25$ + taxes, payables directement à la caisse de la Seigneurie à votre arrivée.</Paragraph> */}
             <div className="w-full lg:mt-24 flex lg:items-start items-center lg:justify-between lg:flex-row  flex-col">
                 <div className="my-24 lg:mt-0  lg:left-32 flex-col justify-start lg:w-80 lg:w-96 xl:ml-16" style={{zIndex: '1000'}}>
                     <div className="lg:ml-24" style={{borderRadius: '15px', padding:'10px 10px', width:'410px'}}>
@@ -106,12 +124,14 @@ export default function SaveTheDate() {
                             emailState={emailState}
                         />
                     </div>
+                    {/* <Paragraph className='text-left'>NB: Les frais d'accès au site de la Seigneurie de l'île d Orléans sont de 25$ + taxes, payables directement à la caisse de la Seigneurie à votre arrivée.</Paragraph> */}
+
                 </div>
                 <div className="flex justify-center rounded-lg mt-12 mb-20 py-12 2xl:hidden w-96 sm:w-2/3 mx-12 sm:mx-0 lg:hidden" style={{backgroundColor: 'whitesmoke'}}>
                     <Cutdown vertical className="lg:hidden mr-0 w-44 self-center p-2"/>
                 </div>
-                <div className="relative my-12 lg:mt-0 xl:mr-12 ring-4 lg:mx-24 ring-or rounded-md w-96 sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
-                    <div className="m-2">
+                <div className="relative my-12 lg:mt-0 xl:mr-12 lg:mx-24 rounded-md w-96 sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
+                    {/* <div className="m-2">
                         <div id="mapid w-1/2" ref={leafletRef} style={{height: '44vh'}}>
                         </div>
                         <div className="flex flex-col shadow-2xl hidden md:flex">
@@ -132,12 +152,59 @@ export default function SaveTheDate() {
                                 </Slider>
                             </div>
                         </div>
+                    </div> */}
+                    <img alt="" className="w-full" src={Perspective} />
+                    <div className="rounded-lg ring-or ring-2 p-2 mt-8">
+                        <Paragraph className='text-left'>
+                                    Infiniment merci pour votre soutien à travers ce chemin de vie devant lequel nous nous engageons sous le regard de Dieu.
+
+                                    En ces temps incertains, nous vous prions de bien vouloir nous aider à conserver un effectif raisonnable, de sorte à pouvoir partager ces moments avec vous, advenant l’hypothèse (évidemment non souhaitée) où les mesures de lutte contre la pandémie changeraient (ex: la limite pour les regroupements sociaux serait fortement diminuée).
+
+                                    L’une des façons pour ce faire serait d’adhérer pleinement au caractère personnel de l’invitation qui vous est adressé.e.
+
+                                    Nous vous remercions par avance pour votre compréhension.
+                        </Paragraph>
                     </div>
                 </div>
             </div>
             <div className="hidden lg:flex justify-center rounded-lg mt-12 mb-20 py-12 lg:py-0 w-96 sm:w-2/3 mx-12 lg:w-4/5 self-center lg:mx-0 sm:mx-0" style={{backgroundColor: 'whitesmoke'}}>
-                    <HorizontalCutdown className="flex items-end justify-center hidden lg:flex mr-0 2xl:hidden self-center w-full p-2 my-24"/>
-                </div>
+                <HorizontalCutdown className="flex items-end justify-center hidden lg:flex mr-0 2xl:hidden self-center w-full p-2 my-24"/>
+            </div>
+            {/* <div className="rounded-lg ring-or ring-4 mx-44 p-'l2">
+            <Paragraph className='text-left'>
+                        Infiniment merci pour votre soutien à travers ce chemin de vie devant lequel nous nous engageons sous le regard de Dieu.
+
+                        En ces temps incertains, nous vous prions de bien vouloir nous aider à conserver un effectif raisonnable, de sorte à pouvoir partager ces moments avec vous, advenant l’hypothèse (évidemment non souhaitée) où les mesures de lutte contre la pandémie changeraient (ex: la limite pour les regroupements sociaux serait fortement diminuée).
+
+                        L’une des façons pour ce faire serait d’adhérer pleinement au caractère personnel de l’invitation qui vous est adressé.e.
+
+                        Nous vous remercions par avance pour votre compréhension.
+            </Paragraph>
+            </div> */}
+            <div className="relative my-12 lg:mt-0 xl:mr-12 lg:mx-24rounded-md w-96 sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
+                {/* <div className="m-2">
+                    <div id="mapid w-1/2" ref={leafletRef} style={{height: '44vh'}}>
+                    </div>
+                    <div className="flex flex-col shadow-2xl hidden md:flex">
+                        <div className="carousel shadow-2xl" style={{
+                            position: "absolute", height: '230px', width: "250px", bottom: '70px',
+                            zIndex:'100000', borderRadius:'15px', right:"5%"}}>
+                            <Slider {...settings}>
+                                {MapImage().map(img => {
+                                    return(
+                                        <div style={ {paddingBottom: "49px",
+                                            borderBottomRightRadius: "15px",
+                                            borderBottomLeftRadius: "15px",
+                                            }}
+                                            key={img.toString()}
+                                        ><img src={img} className="rounded-lg h-60 w-64" alt={img.toString()}/></div>    
+                                    )
+                                })}
+                            </Slider>
+                        </div>
+                    </div>
+                </div> */}
+            </div>
         </div>
     )
 }
@@ -239,6 +306,9 @@ export const Form = ({
                     >
                         { !processing ? defaultMsg : processingMsg }
                 </Button>
+            </fieldset>
+            <fieldset>
+                <Paragraph className='text-left mt-3 font-bold'>NB: Les frais d'accès au site de la Seigneurie de l'île d'Orléans sont de 25$ + taxes, payables directement à la caisse de la Seigneurie à votre arrivée.</Paragraph>
             </fieldset>
         </form>
     )

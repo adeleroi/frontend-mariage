@@ -2,12 +2,12 @@ import * as React from 'react'
 import clsx from 'clsx'
 
 const fontSize = {
-    h1: 'leading-tight text-4xl md:text-5xl',
-    h2: 'leading-tight text-3xl md:text-4xl',
-    h3: 'text-2xl font-medium md:text-3xl',
-    h4: 'text-xl font-medium md:text-2xl',
-    h5: 'text-lg font-medium md:text-xl',
-    h6: 'text-lg font-medium',
+    h1: 'leading-tight text-6xl md:text-7l font-Dancing',
+    h2: 'leading-tight text-5xl md:text-6xl font-Dancing',
+    h3: 'text-3xl font-medium md:text-3xl font-Dancing',
+    h4: 'text-xl font-medium md:text-xl',
+    h5: 'text-xl font-medium md:text-2xl font-Dancing',
+    h6: 'text-xl font-medium font-Dancing',
   }
 
 const titleColors = {

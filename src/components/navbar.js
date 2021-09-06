@@ -14,7 +14,6 @@ import {AnimatePresence, motion } from 'framer-motion'
 const LINKS = [
     {name: 'Déroulement de la journée', to: '/Agenda'},
     {name: 'Confirmer votre présence', to: '/save-the-date'},
-    {name: 'Notre histoire', to: '/histoire'},
     {name: 'Galérie Photos', to: '/galerie'},
 ]
 

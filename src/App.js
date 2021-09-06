@@ -6,14 +6,14 @@ import {loadStripe} from '@stripe/stripe-js';
 import { Navbar } from './components/navbar';
 import { Agenda } from './views/agenda';
 import { Home } from './views/home';
-import { Info } from './components/info';
+// import { Info } from './components/info';
 
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Info />
+      {/* <Info /> */}
       <Switch>
       <Route path="/" exact>
           <Home />
