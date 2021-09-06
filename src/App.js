@@ -6,6 +6,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import { Navbar } from './components/navbar';
 import { Agenda } from './views/agenda';
 import { Home } from './views/home';
+import { Galerie } from './views/Galerie';
 // import { Info } from './components/info';
 
 
@@ -23,6 +24,9 @@ function App() {
         </Route>
         <Route path="/agenda" exact>
           <Agenda />
+        </Route>
+        <Route path="/galerie" exact>
+          <Galerie/>
         </Route>
       </Switch>
     </div>
