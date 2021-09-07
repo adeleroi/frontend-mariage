@@ -97,17 +97,6 @@ export default function SaveTheDate() {
                 </div>
                 <div className="relative my-12 lg:mt-0 xl:mr-12 lg:mx-24 rounded-md w-96 sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
                     <img alt="" className="w-full rounded-lg" src={Perspective} />
-                    <div className="rounded-lg ring-or ring-2 p-2 mt-32 lg:mt-8">
-                        <Paragraph className='text-left'>
-                                    Infiniment merci pour votre soutien à travers ce chemin de vie devant lequel nous nous engageons sous le regard de Dieu.
-
-                                    En ces temps incertains, nous vous prions de bien vouloir nous aider à conserver un effectif raisonnable, de sorte à pouvoir partager ces moments avec vous, advenant l’hypothèse (évidemment non souhaitée) où les mesures de lutte contre la pandémie changeraient (ex: la limite pour les regroupements sociaux serait fortement diminuée).
-
-                                    L’une des façons pour ce faire serait d’adhérer pleinement au caractère personnel de l’invitation qui vous est adressé.e.
-
-                                    Nous vous remercions par avance pour votre compréhension.
-                        </Paragraph>
-                    </div>
                 </div>
             </div>
             <div className="hidden lg:flex justify-center rounded-lg mt-12 mb-20 py-12 lg:py-0 w-96 sm:w-2/3 mx-12 lg:w-4/5 self-center lg:mx-0 sm:mx-0" style={{backgroundColor: 'whitesmoke'}}>
