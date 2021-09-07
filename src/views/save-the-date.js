@@ -54,8 +54,8 @@ export default function SaveTheDate() {
             {sendToGuest}
         ] = await Promise.all(
             [
-                client('https://morning-caverns-74483.herokuapp.com/send-email-to-bride', formValue),
-                client('https://morning-caverns-74483.herokuapp.com/send-email-to-guest', formValue),
+                client('/send-email-to-bride', formValue),
+                client('/send-email-to-guest', formValue),
             ]
         )
         if (sendToBride && sendToGuest) {

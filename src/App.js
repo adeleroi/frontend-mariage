@@ -5,6 +5,7 @@ import { Navbar } from './components/navbar';
 import { Agenda } from './views/agenda';
 import { Home } from './views/home';
 import { Galerie } from './views/Galerie';
+import { InfoUtiles } from './views/infos-utiles';
 // import { Info } from './components/info';
 
 
@@ -25,6 +26,9 @@ function App() {
         </Route>
         <Route path="/galerie" exact>
           <Galerie/>
+        </Route>
+        <Route path="/infos-utiles" exact>
+          <InfoUtiles/>
         </Route>
       </Switch>
     </div>
