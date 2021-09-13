@@ -25,7 +25,7 @@ export const Button = ({variant, className, children, size, ...buttonProps}) => 
 export const ButtonInner = ({size, children, variant}) => {
     return (
         <div className={clsx(
-            'h-12 py-0 px-4 flex justify-center items-center text-white rounded-md font-Poppins',
+            'h-12 py-0 px-4 w-80 md:w-96 flex justify-center items-center text-white rounded-md font-Poppins',
                 {
                     'px-11 py-6 space-x-5': size !== 'medium',
                     'px-8 py-4 space-x-3': size === 'medium',

@@ -45,7 +45,7 @@ export const Agenda = () => {
             <div className="flex flex-col 2xl:flex-row 2xl:mt-32 mt-20">
                 <div className="mr-12 w-full 2xl:w-4/5 mb-12 ">
                     <div  className="rounded-lg p-2 ring-4 ring-black" style={{position:"sticky",  top: "0px"}}>
-                        <img src={Neige} className="h-full rounded-lg focus-ring" alt="cheval"/>
+                        <img src={Neige} className="h-full w-full rounded-lg focus-ring" alt="cheval"/>
                     </div>
                 </div>
                 <div>

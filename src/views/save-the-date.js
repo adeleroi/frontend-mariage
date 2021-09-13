@@ -92,10 +92,10 @@ export default function SaveTheDate() {
                         />
                     </div>
                 </div>
-                <div className="flex justify-center rounded-lg mt-12 mb-20 py-12 2xl:hidden w-96 sm:w-2/3 mx-12 sm:mx-0 lg:hidden" style={{backgroundColor: 'whitesmoke'}}>
+                <div className="flex justify-center rounded-lg mt-12 mb-20 py-12 2xl:hidden w-80 md:w-96 sm:w-2/3 mx-12 sm:mx-0 lg:hidden" style={{backgroundColor: 'whitesmoke'}}>
                     <Cutdown vertical className="lg:hidden mr-0 w-44 self-center p-2"/>
                 </div>
-                <div className="relative my-12 lg:mt-0 xl:mr-12 lg:mx-24 rounded-md w-96 sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
+                <div className="relative my-12 lg:mt-0 xl:mr-12 lg:mx-24 rounded-md w-80 md:w-96 sm:w-2/3 lg:w-2/5 h-4/5 xl:mr-36 xl:w-2/5">
                     <img alt="" className="w-full rounded-lg" src={Perspective} />
                 </div>
             </div>
@@ -140,15 +140,15 @@ export const Form = ({
                 }
             </fieldset>
             <fieldset className="mb-4">
-                <Input className="w-96" required type="text" id="username" placeholder="Nom:"/>
+                <Input className="w-80 md:w-96" required type="text" id="username" placeholder="Nom:"/>
             </fieldset>
             <fieldset className="mb-4">
-                <Input className="w-96" required type="email" id="email" placeholder="Email:"/>
+                <Input className="w-80 md:w-96" required type="email" id="email" placeholder="Email:"/>
             </fieldset>
             <fieldset className="mb-4">
-                <Input className="w-96" type="textarea" id="message" placeholder="Message:" />
+                <Input className="w-80 md:w-96" type="textarea" id="message" placeholder="Message:" />
             </fieldset>
-            <fieldset>
+            <fieldset className="hidden">
                 <div className={clsx('h-12 bg-white rounded-lg text-xl w-96 border-secondary border-2 pb-2 pt-3 px-2 mb-4 outline-none', {
                     'hidden': !forPaiment
                 })}>
@@ -157,18 +157,17 @@ export const Form = ({
             </fieldset>
             <fieldset>
                 <Button
-                    className={clsx("rounded-md w-96 focus:outline-none focus:ring-4 focus:ring-yellow-800 focus:ring-opacity-50 disabled:opacity-50",
+                    className={clsx("rounded-md w-80 md:w-96 focus:outline-none focus:ring-4 focus:ring-yellow-800 focus:ring-opacity-50 disabled:opacity-50",
                     {
                         "bg-bg-purple-700": processing
                     })}
                     type="submit" variant="secondary" disabled={processing}
-                    size="extra"
                     >
                         { !processing ? defaultMsg : processingMsg }
                 </Button>
             </fieldset>
-            <fieldset>
-                <Paragraph className='text-left mt-3 font-bold'>NB: Les frais d'accès au site de la Seigneurie de l'île d'Orléans sont de 25$ + taxes, payables directement à la caisse de la Seigneurie à votre arrivée.</Paragraph>
+            <fieldset className="flex justify-center px-8 md:px-0">
+                <Paragraph className='text-center md:text-left mt-3 font-bold'>NB: Les frais d'accès au site de la Seigneurie de l'île d'Orléans sont de 25$ + taxes, payables directement à la caisse de la Seigneurie à votre arrivée.</Paragraph>
             </fieldset>
         </form>
     )
