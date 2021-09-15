@@ -65,7 +65,7 @@ export const InfoUtiles = () => {
             <div>
               <H3 className="text-left mt-5 mb-4 text-secondary">Cadeaux</H3>
               <Paragraph className='text-left text-lg xl:text-xl 2xl:mb-0 font-thin leading-10 2xl:mr-12'>
-                Nous n'avons pas de liste de cadeaux prédéfinie. Nous apprécierons tous vos présents, en espèces ou en nature.
+              Nous n'avons pas de liste de cadeaux prédéfinie. Si vous n’avez pas d’idées de cadeaux (parce qu’après tout, c’est quand même pas si facile d’en trouver😅😅), ou que vous craignez qu’une ou plusieurs personnes personnes offrent la même chose que vous, ne vous en faites pas plus : nous prendrons vos dons en espèces ☺️.
               </Paragraph>
             </div>
           </div>

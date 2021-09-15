@@ -26,7 +26,7 @@ const HeroSection = () => {
                     <Paragraph className="text-vxl md:text-4xl md:leading-loose">
                         Nous sommes heureux de vous inviter le 9 octobre 2021 à notre mariage… <br/>
 
-                        Les cérémonies  religieuse et civile ainsi que la réception, se dérouleront dans les jardins de la Seigneurie de l’île dorleans.<br/>
+                        Les cérémonies  religieuse et civile ainsi que la réception, se dérouleront dans les jardins de la Seigneurie de l’île d'orleans.<br/>
 
                         Vous pourrez profiter du cadre exceptionnellement beau de cet environnement naturel pour prendre des photos ou renouer avec Mère Nature, autour d'un cocktail et d'un repas que nous vous offrons.
 
