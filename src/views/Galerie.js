@@ -1,12 +1,12 @@
 import { H1 } from "../components/typography"
 // import Rayon from "../image/rayon.jpeg"
-// import regard from "../image/regard.jpeg"
-import tunnel from "../image/tunnel.jpeg"
+import regard from "../image/regard.jpeg"
+// import tunnel from "../image/tunnel.jpeg"
 import nature from "../image/nature.jpeg"
 import Tilt from "../components/tilt"
 
 
-const MapImage = [tunnel, nature]
+const MapImage = [regard, nature]
 export const Galerie = () => {
     return (
         <>
