@@ -6,14 +6,14 @@ import { Agenda } from './views/agenda';
 import { Home } from './views/home';
 import { Galerie } from './views/Galerie';
 import { InfoUtiles } from './views/infos-utiles';
-// import { Info } from './components/info';
+import { Info } from './components/info';
 
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      {/* <Info /> */}
+      <Info />
       <Switch>
       <Route path="/" exact>
           <Home />

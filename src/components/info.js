@@ -11,7 +11,7 @@ export const Info = () => {
     <div id="popup" className="bottom-8 fixed bg-black rounded-lg font-Matter w-96 h-56 flex flex-col justify-center px-6 right-4 pt-5" style={{zIndex: "40000000"}}>
       <div className="absolute right-1 top-1 pr-2" aria-label="dismiss message"><p onClick={handleClick} className="text-gray hover:text-white text-2xl cursor-pointer">&times;</p></div>
       <Paragraph className="text-white text-left">
-        <span role="img" aria-label="wave">&#128075;</span>Merci pour votre présence. Un montant de 25$ + taxes sera nécessaire pour l'accès au lieu de mariage.
+        <span role="img" aria-label="wave">&#128075;</span> &nbsp;Merci pour votre présence. Un montant de 25$ + taxes sera nécessaire pour l'accès au lieu de mariage.
         Vous berceriez dans un magnifique jardin tout en couleur
         et renoueriez avec la nature.
       </Paragraph>
