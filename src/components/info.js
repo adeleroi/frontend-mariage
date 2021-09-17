@@ -12,8 +12,8 @@ export const Info = () => {
       <div className="absolute right-1 top-1 pr-2" aria-label="dismiss message"><p onClick={handleClick} className="text-gray hover:text-white text-2xl cursor-pointer">&times;</p></div>
       <Paragraph className="text-white text-left">
         <span role="img" aria-label="wave">&#128075;</span> &nbsp;Merci pour votre présence. Un montant de 25$ + taxes sera nécessaire pour l'accès au lieu du mariage.
-        Vous berceriez dans un magnifique jardin tout en couleur
-        et renoueriez avec la nature.
+        Vous bercerez dans un magnifique jardin tout en couleur
+        et renouerez avec la nature.
       </Paragraph>
       <div className="text-left my-3">
         <a href="https://seigneurieiledorleans.com/la-seigneurie/nos-jardins-et-visite-des-lieux/" target="_blank" rel="noopener noreferrer" className='text-white text-left underline'>Site web du jardin</a>
