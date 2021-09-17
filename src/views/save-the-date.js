@@ -75,7 +75,7 @@ export default function SaveTheDate() {
                 <div className="lg:mx-24 xl:mx-44 lg:mb-24 flex flex-col sm:items-center lg:items-start justify-start w-full">
                     <H1 className="text-center sm:text-left mt-32 sm:mb-3 md:mb-8 lg:mb-3 text-secondary">Confirmez votre présence</H1>
                     <H1 className="text-center sm:text-left mt-5 mb-4">Remplissez le formulaire ci-bas.</H1>
-                    <H4 className="text-gray w-full text-center lg:text-left ">Faite nous savoir si vous avez besoin d'accomodements (allergies)</H4>
+                    <H4 className="text-gray w-full text-center lg:text-left ">Faites nous savoir si vous avez besoin d'accomodements (allergies)</H4>
                 </div>
                 <Cutdown vertical className="hidden 2xl:flex self-center mr-36"/>
             </div>

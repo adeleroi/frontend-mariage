@@ -14,7 +14,7 @@ export const Agenda = () => {
         {
             from: '09h45',
             to: '10h20',
-            type: 'Arrivée et installation des invites',
+            type: 'Arrivée et installation des invités',
         },
         {
             from: '10h30',
